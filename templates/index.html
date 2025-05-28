@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora TSP - Búsqueda Tabú</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Algoritmo de Búsqueda Tabú - TSP</h1>
+        <form action="/calcular_ruta" method="POST">
+            <label for="tiempo_persistencia">Tiempo de Persistencia:</label>
+            <input type="number" name="tiempo_persistencia" required>
+
+            <label for="iteraciones">Número de Iteraciones:</label>
+            <input type="number" name="iteraciones" required>
+
+            <label for="temperatura_inicial">Temperatura Inicial:</label>
+            <input type="number" step="0.1" name="temperatura_inicial" required>
+
+            <label for="temperatura_minima">Temperatura Mínima:</label>
+            <input type="number" step="0.1" name="temperatura_minima" required>
+
+            <label for="velocidad_enfriamiento">Velocidad de Enfriamiento:</label>
+            <input type="number" step="0.01" name="velocidad_enfriamiento" required>
+
+            <label for="ciudad_origen">Ciudad de Origen:</label>
+            <select name="ciudad_origen" required>
+                <option value="" disabled selected>Selecciona la ciudad de origen</option>
+                <option value="CDMX">CDMX</option>
+                <option value="Toluca">Toluca</option>
+                <option value="Atlacomulco">Atlacomulco</option>
+                <option value="Guadalajara">Guadalajara</option>
+                <option value="Monterrey">Monterrey</option>
+                <option value="QuintanaRoo">QuintanaRoo</option>
+                <option value="Michohacan">Michohacan</option>
+                <option value="Aguascalientes">Aguascalientes</option>
+                <option value="Jiloyork">Jiloyork</option>
+                <option value="QRO">QRO</option>
+            </select>
+
+            <label for="ciudad_destino">Ciudad de Destino:</label>
+            <select name="ciudad_destino" required>
+                <option value="" disabled selected>Selecciona la ciudad de destino</option>
+                <option value="CDMX">CDMX</option>
+                <option value="Toluca">Toluca</option>
+                <option value="Atlacomulco">Atlacomulco</option>
+                <option value="Guadalajara">Guadalajara</option>
+                <option value="Monterrey">Monterrey</option>
+                <option value="QuintanaRoo">QuintanaRoo</option>
+                <option value="Michohacan">Michohacan</option>
+                <option value="Aguascalientes">Aguascalientes</option>
+                <option value="Jiloyork">Jiloyork</option>
+                <option value="QRO">QRO</option>
+            </select>
+
+            <button type="submit">Calcular Mejor Ruta</button>
+        </form>
+
+        {% if mejor_solucion %}
+        <h2>Mejor Ruta Encontrada</h2>
+        <p><strong>Ruta:</strong> {{ mejor_solucion }}</p>
+        <p><strong>Distancia Total:</strong> {{ mejor_evaluacion }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
+
